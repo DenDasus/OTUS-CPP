@@ -10,9 +10,9 @@ script:
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
-on:
-  all_branches: true
 deploy:
+  on:
+    all_branches: true
   provider: script
   skip_cleanup: true
   script:
