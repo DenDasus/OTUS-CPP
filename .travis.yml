@@ -13,5 +13,6 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
+  all_branches: true
   script:
   - curl -T otus-cpp-hw1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udendasus:$BINTRAY_API_KEY "https://api.bintray.com/content/dendasus/OTUS-CPP_homeworks/hw1/$TRAVIS_BUILD_NUMBER/otus-cpp-hw1-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
