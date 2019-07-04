@@ -1,4 +1,3 @@
-# blacklist
 branches:
-  except:
-    - master
+  only:
+    - hw1
