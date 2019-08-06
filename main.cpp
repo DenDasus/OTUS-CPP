@@ -6,10 +6,37 @@
 
 #include "IpFilter.h"
 #include "Utils.h"
+#include <algorithm>
 
 
 int main(int argc, char const *argv[])
 {
+    std::vector<IpAddr> ipPool;
+
+    ipPool.push_back(IpAddr{std::string("192.168.0.1")});
+    ipPool.push_back(IpAddr{std::string("190.168.0.2")});
+    ipPool.push_back(IpAddr{std::string("190.11.0.2")});
+    ipPool.push_back(IpAddr{std::string("8.8.8.8")});
+
+    for (IpAddr addr : ipPool) {
+        std::cout << addr << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::sort(ipPool.cbegin(), ipPool.cend());
+
+    for (IpAddr addr : ipPool) {
+        std::cout << addr << std::endl;
+    }
+
+    for(std::string line; std::getline(std::cin, line);)
+    {
+        std::vector<std::string> v = Utils::split(line, '\t');
+        ipPool.push_back(IpAddr(v.at(0)));
+    }
+
+
     try
     {
         std::vector<std::vector<std::string> > ip_pool;
