@@ -20,6 +20,10 @@ private:
         }
     }
 
+    uint8_t getOctet(uint8_t oct) {
+        return (ip >> 8 * (4 - oct)) & 0xFF;
+    }
+
 public:
     IpAddr(uint32_t ip) {
         this->ip = ip;
@@ -31,6 +35,16 @@ public:
 
     uint32_t getIp() const {
         return ip;
+    }
+
+    bool isMetRequirements(int oct1 = -1, int oct2 = -1, int oct3 = -1, int oct4 = -1) {
+        uint32_t mask = 0;
+        mask |= (oct1 == -1 ? getOctet(1) : oct1) << 24;
+        mask |= (oct2 == -1 ? getOctet(2) : oct2) << 16;
+        mask |= (oct3 == -1 ? getOctet(3) : oct3) << 8;
+        mask |= (oct3 == -1 ? getOctet(4) : oct4);
+
+        return ip == mask;
     }
 
     friend std::ostream &operator << (std::ostream &os, const IpAddr& ipAddr) {

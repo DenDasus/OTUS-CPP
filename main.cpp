@@ -28,6 +28,9 @@ int main(int argc, char const *argv[])
         std::cout << addr << std::endl;
     }
 
+    std::cout << ipPool.at(5).isMetRequirements() << std::endl;
+    std::cout << ipPool.at(5).isMetRequirements(8) << std::endl;
+
 //    try
 //    {
 //        std::vector<std::vector<std::string> > ip_pool;
