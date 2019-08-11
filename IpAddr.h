@@ -47,6 +47,15 @@ public:
         return ip == mask;
     }
 
+    bool isContain(uint8_t oct) {
+        for(int i = 0; i < 4; i++) {
+            if(((ip >> i * 8) & 0xFF) == oct) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     friend std::ostream &operator << (std::ostream &os, const IpAddr& ipAddr) {
         uint32_t ip = ipAddr.getIp();
         return os  << ((ip >> 24) & 0xFF) << '.' << ((ip >> 16) & 0xFF) << '.' << ((ip >> 8) & 0xFF) << '.' << (ip & 0xFF);
