@@ -9,13 +9,6 @@
 
 class Utils {
 public:
-
-    // ("",  '.') -> [""]
-    // ("11", '.') -> ["11"]
-    // ("..", '.') -> ["", "", ""]
-    // ("11.", '.') -> ["11", ""]
-    // (".11", '.') -> ["", "11"]
-    // ("11.22", '.') -> ["11", "22"]
     static std::vector<std::string> split(const std::string &str, char delim)
     {
         std::vector<std::string> parts;
