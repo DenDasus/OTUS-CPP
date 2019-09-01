@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
 
     //Sorted
     for (IpAddr addr : ipPool) {
-        std::cout << addr << std::endl;
+        std::cout << addr << std::endl;  
     }
 
     // filter by first byte and output
