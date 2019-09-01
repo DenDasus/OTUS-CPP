@@ -1,10 +1,12 @@
-cmake_minimum_required(VERSION 2.8.2)
-project(OTUS_CPP)
+cmake_minimum_required(VERSION 3.2)
+project(otus-cpp-hw2 VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 set(CMAKE_CXX_STANDARD 14)
 
+configure_file(version.h.in version.h)
+
 # Download and unpack googletest at configure time
-configure_file(CMakeLists.gtest.txt.in googletest-download/CMakeLists.txt)
+configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
   RESULT_VARIABLE result
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
@@ -36,8 +38,7 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(OTUS_CPP_test TestUtils.cpp)
-target_link_libraries(OTUS_CPP_test gtest_main)
-
 
 add_executable(OTUS_CPP main.cpp IpAddr.h Utils.h)
+target_link_libraries(example gtest_main)
+add_test(NAME example_test COMMAND example)
