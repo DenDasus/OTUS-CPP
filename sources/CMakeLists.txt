@@ -41,3 +41,19 @@ add_executable(ip_filter_test TestUtils.cpp)
 target_link_libraries(ip_filter_test gtest_main)
 
 add_executable(ip_filter main.cpp IpAddr.h Utils.h)
+
+install(TARGETS ip_filter RUNTIME DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
+
+enable_testing()
+
+add_test(ip_filter_test ip_filter_test)
