@@ -14,7 +14,7 @@ void printIp(std::string string) {
     std::cout << string << std::endl;
 }
 
-template <typename Number, typename = typename std::enable_if<std::is_integral<Number>::value>::type>
+template <typename Number, typename std::enable_if<std::is_integral<Number>::value, void*>::type = nullptr>
 void printIp(Number num) {
     int size = sizeof(num);
     uint8_t* ptr = ((uint8_t*) &num);
@@ -32,7 +32,9 @@ void printIp(Number num) {
 //
 //}
 
-template <typename Container, typename Container::iterator>
+template <typename Container, typename std::enable_if<has_iterator<Container>::value
+        && std::is_integral<typename Container::value_type>::value
+        , void*>::type = nullptr>
 void printIp(Container container) {
 
 }
@@ -45,6 +47,7 @@ int main(int argc, char const *argv[]) {
 
     printIp(std::string("127.0.0.1"));
     printIp(std::vector<int>{127, 0, 0, 2});
+    printIp(std::vector<std::string>{"127", "0, 0, 2"});
     printIp(std::list<int>{127, 0, 0, 3});
 //
 //    printIp(std::make_tuple(192, 168, 0, 0));
